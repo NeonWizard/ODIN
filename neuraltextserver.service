@@ -7,7 +7,7 @@ StartLimitIntervalSec=30
 
 [Service]
 WorkingDirectory=/opt/neuraltextserver
-ExecStart=python3 main.py
+ExecStart=make run
 Restart=on-failure
 RestartSec=5
 Type=simple

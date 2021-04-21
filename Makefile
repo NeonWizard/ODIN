@@ -11,10 +11,10 @@ install: update
 test:
 	python3 -m unittest
 
-run: update
+run:
 	python3 neuraltextserver
 
-cli: update
+cli:
 	python3 neuraltextserver/cli.py
 
 .PHONY: init test
