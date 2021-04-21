@@ -1,0 +1,16 @@
+[Unit]
+Description=Neural Text Server
+After=multi-user.target
+OnFailure=unit-status-telegram@%n.service
+StartLimitBurst=2
+StartLimitIntervalSec=30
+
+[Service]
+WorkingDirectory=/opt/neuraltextserver
+ExecStart=python3 main.py
+Restart=on-failure
+RestartSec=5
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
