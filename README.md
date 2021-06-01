@@ -1,2 +1,11 @@
-# NeuralTextServer
-Provides a REST API to request generated text from neural networks.
+    ███████    ██████████   █████ ██████   █████
+  ███░░░░░███ ░░███░░░░███ ░░███ ░░██████ ░░███
+ ███     ░░███ ░███   ░░███ ░███  ░███░███ ░███
+░███      ░███ ░███    ░███ ░███  ░███░░███░███
+░███      ░███ ░███    ░███ ░███  ░███ ░░██████
+░░███     ███  ░███    ███  ░███  ░███  ░░█████
+ ░░░███████░   ██████████   █████ █████  ░░█████
+   ░░░░░░░    ░░░░░░░░░░   ░░░░░ ░░░░░    ░░░░░
+
+A centralized API for all of my GPT-2 neural networks.
+The REST API is provided at neuraltext.deadtired.me/api/docs
