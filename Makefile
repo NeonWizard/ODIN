@@ -15,6 +15,6 @@ run:
 	python3 neuraltextserver
 
 cli:
-	python3 neuraltextserver/cli.py
+	python3 cli.py
 
 .PHONY: init test
