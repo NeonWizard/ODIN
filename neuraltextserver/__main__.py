@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True if "DEBUG" in os.environ and os.environ["DEBUG"] == "true" else False
+app.config["DEBUG"] = True if "DEBUG" in os.environ and os.environ["DEBUG"].lower() == "true" else False
 
 @app.route("/api/neuraltext/ping", methods=["GET"])
 def ping(): return "pong"
@@ -27,6 +27,7 @@ def generate():
 	length = request.args.get("length")
 
 	print(model, length)
+
 
 if __name__ == "__main__":
 	# start server
