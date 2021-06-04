@@ -13,7 +13,7 @@ class TestSimple(unittest.TestCase):
 
 	# -- Tests --
 	def test_ping(self):
-		response = self.app.get("/api/neuraltext/ping")
+		response = self.app.get("/api/ping")
 		self.assertEquals(response.status_code, 200)
 
 if __name__ == "__main__":
