@@ -1,7 +1,10 @@
+import click
+
 from neuraltextserver import *
 
-def main():
-	print(f"""
+class RichGroup(click.Group):
+	def format_help(self, ctx, formatter):
+		print(f"""
     ███████    ██████████   █████ ██████   █████
   ███░░░░░███ ░░███░░░░███ ░░███ ░░██████ ░░███
  ███     ░░███ ░███   ░░███ ░███  ░███░███ ░███
@@ -11,15 +14,27 @@ def main():
  ░░░███████░   ██████████   █████ █████  ░░█████
    ░░░░░░░    ░░░░░░░░░░   ░░░░░ ░░░░░    ░░░░░
 
-  A centralized API for all of my GPT-2 neural networks.
-  The REST API is provided at neuraltext.deadtired.me/api/docs
+ A centralized API for my various GPT-2 neural networks.
+ The REST API is provided at odin.deadtired.me/api/docs
+		""")
 
-  Usage: odin <command> [options]
+		print()
 
-  Options:
-	-v, --version		output the version number
-	-h, --help			output the usage information
-	""")
+		self.format_usage(ctx, formatter)
+		self.format_options(ctx, formatter)
+		self.format_epilog(ctx, formatter)
+
+@click.group(cls=RichGroup)
+@click.version_option("1.0")
+@click.pass_context
+def main(ctx):
+	pass
+
+@main.command()
+@click.argument("model")
+def generate():
+	print("Generate called")
+
 
 if __name__ == "__main__":
 	main()
