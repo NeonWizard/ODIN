@@ -1,6 +1,6 @@
 import click
 
-from neuraltextserver import *
+import neuraltextserver as odin
 
 class RichGroup(click.Group):
 	def format_help(self, ctx, formatter):
@@ -31,9 +31,21 @@ def main(ctx):
 	pass
 
 @main.command()
+def list():
+	"""
+	Print all of the available GPT-2 models by name.
+	"""
+
+	odin.models()
+
+@main.command()
 @click.argument("model")
 def generate():
-	print("Generate called")
+	"""
+	Generate text via the specified model name.
+	"""
+
+	odin.generate()
 
 
 if __name__ == "__main__":

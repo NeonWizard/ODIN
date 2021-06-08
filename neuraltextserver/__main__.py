@@ -1,6 +1,5 @@
 import flask
 from flask import request, jsonify
-
 import os
 
 from dotenv import load_dotenv
@@ -13,21 +12,33 @@ app.config["DEBUG"] = True if "DEBUG" in os.environ and os.environ["DEBUG"].lowe
 def ping(): return "pong"
 
 @app.route("/api/docs", methods=["GET"])
-def homepage():
-	routes = []
+def docs():
+	"""
+	API documentation.
+	"""
 
-	for rule in app.url_map.iter_rules():
-		if not str(rule).startswith("/api"): continue
-		routes.append('%s' % rule)
+	with open("neuraltextserver/APIDOC.md", 'r') as f:
+		rendered = markdownFormat(f.read())
 
-	return jsonify(routes)
+	return rendered
 
-@app.route("/api/model", methods=["GET"])
-def generate():
-	model = request.args.get("model")
+@app.route("/api/models", methods=["GET"])
+def models():
+	"""
+	Returns all available GPT-2 models by name.
+	"""
+
+	pass
+
+@app.route("/api/models/<name>", methods=["GET"])
+def generate(name):
+	"""
+	Generates text via a specified GPT-2 model.
+	"""
+
 	length = request.args.get("length")
 
-	print(model, length)
+	print(name, length)
 
 
 if __name__ == "__main__":
