@@ -12,7 +12,7 @@ test:
 	python3 -m unittest
 
 run:
-	python3 neuraltextserver
+	flask run
 
 cli:
 	python3 cli.py
