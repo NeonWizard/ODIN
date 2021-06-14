@@ -7,7 +7,8 @@
 ░░███     ███  ░███    ███  ░███  ░███  ░░█████
  ░░░███████░   ██████████   █████ █████  ░░█████
    ░░░░░░░    ░░░░░░░░░░   ░░░░░ ░░░░░    ░░░░░
-
- A centralized API for my various GPT-2 neural networks.
- The web API is provided at odin.deadtired.me/api/docs
 ```
+A centralized API for my various GPT-2 neural networks.
+<br>
+The web API is provided at [https://odin.deadtired.me/api/docs](https://odin.deadtired.me/api/docs).
+
