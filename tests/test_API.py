@@ -73,7 +73,7 @@ class TestSimple(unittest.TestCase):
 		# default
 		response = self.app.get(endpoint)
 		self.assertEqual(response.status_code, 200)
-		self.assertEqual(response.json["meta"]["request"], {
+		self.assertEqual(response.json["meta"]["parameters"], {
             "batch_size": 1,
             "include_prefix": True,
             "length": 512,
@@ -100,7 +100,7 @@ class TestSimple(unittest.TestCase):
 			"include_prefix": False
 		})
 		self.assertEqual(response.status_code, 200)
-		self.assertEqual(response.json["meta"]["request"], {
+		self.assertEqual(response.json["meta"]["parameters"], {
             "batch_size": 2,
             "include_prefix": False,
             "length": 4,

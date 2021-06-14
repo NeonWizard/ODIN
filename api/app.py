@@ -24,10 +24,7 @@ def models():
 	models = odin.models()
 
 	return {
-		"data": models,
-		"meta": {
-			"result_count": len(models)
-		}
+		"models": models
 	}
 
 @app.route("/api/models/<string:name>", methods=["GET"])
@@ -87,7 +84,7 @@ def generate(name):
 		"data": result,
 		"meta": {
 			"generation_time": round(gen_time.total_seconds() * 1000),
-			"request": {
+			"parameters": {
 				"length": length,
 				"truncate": truncate,
 				"prefix": prefix,
