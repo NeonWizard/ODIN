@@ -36,16 +36,16 @@ def list():
 	Print all of the available GPT-2 models by name.
 	"""
 
-	odin.models()
+	print(odin.models())
 
 @main.command()
 @click.argument("model")
-def generate():
+def generate(model):
 	"""
 	Generate text via the specified model name.
 	"""
 
-	odin.generate()
+	print(odin.generate(model))
 
 
 if __name__ == "__main__":

@@ -75,15 +75,15 @@ def models():
 
 	return []
 
-@app.route("/api/models/<name>", methods=["GET"])
-def generate(name):
+@app.route("/api/models/<string:name>", methods=["GET"])
+def generate(name, length):
 	"""
 	Generates text via a specified GPT-2 model.
 	"""
 
-	length = request.args.get("length")
+	# length = request.args.get("length")
 
-	print(name, length)
+	# print(name, length)
 
 	return {}
 
