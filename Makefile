@@ -9,7 +9,7 @@ install: update
 	sudo systemctl restart neuraltextserver.service
 
 test:
-	python3 -m unittest
+	python3 -W ignore::DeprecationWarning -m unittest
 
 run:
 	flask run
