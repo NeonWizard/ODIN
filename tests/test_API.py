@@ -12,6 +12,10 @@ class TestSimple(unittest.TestCase):
 		self.app = app.test_client()
 
 	# -- Tests --
+	def test_auth(self):
+		response = self.app.get("/api/auth")
+		self.assertEquals(response.status_code, 200)
+
 	def test_ping(self):
 		response = self.app.get("/api/ping")
 		self.assertEqual(response.status_code, 200)
