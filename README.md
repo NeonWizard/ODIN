@@ -9,5 +9,5 @@
    ░░░░░░░    ░░░░░░░░░░   ░░░░░ ░░░░░    ░░░░░
 
  A centralized API for my various GPT-2 neural networks.
- The REST API is provided at odin.deadtired.me/api/docs
+ The web API is provided at odin.deadtired.me/api/docs
 ```
