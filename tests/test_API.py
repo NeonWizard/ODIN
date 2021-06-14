@@ -21,47 +21,49 @@ class TestSimple(unittest.TestCase):
 		This tests text generation and parameters.
 		"""
 
+		endpoint = "/api/models/test"
+
 		# - Fail cases
 		# length
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"length": -1
 		})
 		self.assertEqual(response.status_code, 400)
 
 		# temperature
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"temperature": -1
 		})
 		self.assertEqual(response.status_code, 400)
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"temperature": 2.3
 		})
 		self.assertEqual(response.status_code, 400)
 
 		# top_k
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"top_k": -1
 		})
 		self.assertEqual(response.status_code, 400)
 
 		# top_p
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"top_p": -1
 		})
 		self.assertEqual(response.status_code, 400)
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"top_p": 3.7
 		})
 		self.assertEqual(response.status_code, 400)
 
 		# n_samples
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"n_samples": -1
 		})
 		self.assertEqual(response.status_code, 400)
 
 		# batch_size
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"n_samples": 1,
 			"batch_size": 2
 		})
@@ -69,7 +71,7 @@ class TestSimple(unittest.TestCase):
 
 		# - Success cases
 		# default
-		response = self.app.get("/api/models/test")
+		response = self.app.get(endpoint)
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.json["meta"]["request"], {
             "batch_size": 1,
@@ -86,7 +88,7 @@ class TestSimple(unittest.TestCase):
 		})
 
 		# configured
-		response = self.app.get("/api/models/test", data={
+		response = self.app.get(endpoint, data={
 			"length": 4,
 			"temperature": 1.0,
 			"top_k": 1,

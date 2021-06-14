@@ -74,11 +74,14 @@ def generate(name):
 		return { "error": "Batch sizes must be able to divide n_samples" }, 400
 
 	# - Generate response
-	start_time = datetime.datetime.now()
-
-	result = odin.generate(name)
-
-	gen_time = datetime.datetime.now() - start_time
+	name = name.lower()
+	if name == "test":
+		gen_time = datetime.timedelta(milliseconds=69)
+		result = "there are 40 cherries on the cherry tree."
+	else:
+		start_time = datetime.datetime.now()
+		result = odin.generate(name)
+		gen_time = datetime.datetime.now() - start_time
 
 	return {
 		"data": result,
