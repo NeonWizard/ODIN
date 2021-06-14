@@ -1,8 +1,12 @@
 import flask
 from flask import request, jsonify
+
+from .blueprints.jinja_endpoint import blueprint as jinja_template_blueprint
+
 import os
 
 app = flask.Flask(__name__)
+app.register_blueprint(jinja_template_blueprint)
 
 @app.route("/api/ping", methods=["GET"])
 def ping(): return "pong"
