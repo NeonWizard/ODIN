@@ -70,7 +70,7 @@ def docs():
 @app.route("/api/models", methods=["GET"])
 def models():
 	"""
-	Returns all available GPT-2 models by name.
+	Returns all available GPT-2 models.
 	"""
 
 	return []

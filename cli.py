@@ -1,6 +1,6 @@
 import click
 
-import neuraltextserver as odin
+import odin
 
 class RichGroup(click.Group):
 	def format_help(self, ctx, formatter):

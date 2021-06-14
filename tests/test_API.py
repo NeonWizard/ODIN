@@ -1,6 +1,6 @@
 import unittest
 
-from neuraltextserver import app
+from api.app import app
 
 class TestSimple(unittest.TestCase):
 	# -- Setup --
