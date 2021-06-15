@@ -18,10 +18,7 @@ app.register_blueprint(auth_endpoints)
 
 swaggerui_blueprint = get_swaggerui_blueprint(
 	"/api/docs",
-	"/api/spec",
-	# config={
-	# 	"defaultModelRendering": "model"
-	# }
+	"/api/spec"
 )
 app.register_blueprint(swaggerui_blueprint)
 
