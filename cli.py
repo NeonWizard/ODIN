@@ -45,7 +45,7 @@ def generate(model):
 	Generate text via the specified model name.
 	"""
 
-	print(odin.generate(model))
+	print("\n".join(odin.generate(model)["data"]))
 
 
 if __name__ == "__main__":

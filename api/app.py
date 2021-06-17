@@ -230,14 +230,30 @@ def generate(name):
 	name = name.lower()
 	if name == "test":
 		gen_time = datetime.timedelta(milliseconds=69)
-		result = "there are 40 cherries on the cherry tree."
+		result = { "data": "there are 40 cherries on the cherry tree." }
 	else:
 		start_time = datetime.datetime.now()
-		result = odin.generate(name)
+		result = odin.generate(
+			name,
+			length=length,
+			truncate=truncate,
+			prefix=prefix,
+			seed=seed,
+			temperature=temperature,
+			top_k=top_k,
+			top_p=top_p,
+			include_prefix=include_prefix,
+			sample_delimiter=sample_delimiter,
+			n_samples=n_samples,
+			batch_size=batch_size
+		)
 		gen_time = datetime.datetime.now() - start_time
 
+	if "error" in result:
+		return { "error": result["error"] }, 400
+
 	return {
-		"data": result,
+		"data": result["data"],
 		"meta": {
 			"generation_time": round(gen_time.total_seconds() * 1000),
 			"parameters": {
