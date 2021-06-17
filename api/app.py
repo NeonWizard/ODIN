@@ -211,6 +211,8 @@ def generate(name):
 	# - Validate arguments
 	if length < 1 or length > 16384:
 		return { "error": "Valid length is between 1 and 16384 inclusively." }, 400
+	if seed and (seed < 0 or seed > 2**32-1):
+		return { "error": "Valid seed is between 0 and 2**32 - 1 inclusively." }, 400
 	if temperature < 0.0 or temperature > 1.0:
 		return { "error": "Valid temperature is between 0.0 and 1.0 inclusively." }, 400
 	if top_k != 0 and top_p != 0.0:
