@@ -12,4 +12,16 @@ class TestOdin(unittest.TestCase):
 		models = odin.models()
 
 	def test_generate(self):
-		pass
+		odin.generate(
+			"test",
+			length=16,
+			truncate="sometext",
+			prefix="someprefix",
+			seed=489534,
+			temperature=0.8,
+			top_k=0,
+			top_p=0,
+			include_prefix=True,
+			n_samples=2,
+			batch_size=2
+		)
