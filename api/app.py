@@ -134,13 +134,6 @@ def generate(name):
 				type: boolean
 				default: true
 
-		-	name: sample_delimiter
-			in: body
-			description: Text used to delimit multiple samples when n_samples > 1
-			schema:
-				type: string
-				default: "===================="
-
 		-	name: n_samples
 			in: body
 			description: Number of samples to generate
@@ -203,9 +196,7 @@ def generate(name):
 	include_prefix = request.form.get("include_prefix", str(odin.defaults.INCLUDE_PREFIX), type=str)
 	include_prefix = include_prefix.lower() == "true"
 
-	sample_delimiter = request.form.get("sample_delimiter", odin.defaults.SAMPLE_DELIMITER, type=str)
 	n_samples = request.form.get("n_samples", odin.defaults.N_SAMPLES, type=int)
-	if n_samples == 1: sample_delimiter = ""
 	batch_size = request.form.get("batch_size", odin.defaults.BATCH_SIZE, type=int)
 
 	# - Validate arguments
@@ -243,7 +234,6 @@ def generate(name):
 			top_k=top_k,
 			top_p=top_p,
 			include_prefix=include_prefix,
-			sample_delimiter=sample_delimiter,
 			n_samples=n_samples,
 			batch_size=batch_size
 		)
@@ -265,7 +255,6 @@ def generate(name):
 				"top_k": top_k,
 				"top_p": top_p,
 				"include_prefix": include_prefix,
-				"sample_delimiter": sample_delimiter,
 				"n_samples": n_samples,
 				"batch_size": batch_size
 			}

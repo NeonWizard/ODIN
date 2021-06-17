@@ -22,7 +22,6 @@ def generate(
 	top_k=defaults.TOP_K,
 	top_p=defaults.TOP_P,
 	include_prefix=defaults.INCLUDE_PREFIX,
-	sample_delimiter=defaults.SAMPLE_DELIMITER,
 	n_samples=defaults.N_SAMPLES,
 	batch_size=defaults.BATCH_SIZE
 ):
@@ -51,7 +50,6 @@ def generate(
 		temperature=temperature,
 		top_k=top_k,
 		top_p=top_p,
-		sample_delim=sample_delimiter,
 		nsamples=n_samples,
 		batch_size=batch_size
 	)
