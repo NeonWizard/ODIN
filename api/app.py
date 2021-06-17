@@ -212,6 +212,8 @@ def generate(name):
 		return { "error": "top_k must be a non-negative number." }, 400
 	if top_p < 0.0 or top_p > 1.0:
 		return { "error": "Valid top_p is between 0.0 and 1.0 inclusively." }, 400
+	if seed and n_samples > 1:
+		return { "error": "If seed is set, n_samples must be equal to 1." }, 400
 	if n_samples < 1 or n_samples > 8:
 		return { "error": "Valid n_samples is between 1 and 8 inclusively." }, 400
 	if n_samples % batch_size != 0:

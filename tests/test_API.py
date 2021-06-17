@@ -36,6 +36,11 @@ class TestAPI(unittest.TestCase):
 			"seed": 2**33
 		})
 		self.assertEqual(response.status_code, 400)
+		response = self.app.get(endpoint, data={
+			"seed": 48573,
+			"n_samples": 2
+		})
+		self.assertEqual(response.status_code, 400)
 
 		# temperature
 		response = self.app.get(endpoint, data={
@@ -102,7 +107,6 @@ class TestAPI(unittest.TestCase):
 			"batch_size": 2,
 			"truncate": "someword",
 			"prefix": "yeap",
-			"seed": 3489575,
 			"include_prefix": False
 		})
 		self.assertEqual(response.status_code, 200)
@@ -112,7 +116,7 @@ class TestAPI(unittest.TestCase):
             "length": 4,
             "n_samples": 2,
             "prefix": "yeap",
-            "seed": 3489575,
+            "seed": None,
             "temperature": 1.0,
             "top_k": 1,
             "top_p": 0.0,
