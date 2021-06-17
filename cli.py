@@ -36,7 +36,7 @@ def list():
 	Print all of the available GPT-2 models by name.
 	"""
 
-	print(odin.models())
+	print("\n".join(odin.models()))
 
 @main.command()
 @click.argument("model")

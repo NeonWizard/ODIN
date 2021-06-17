@@ -1,9 +1,10 @@
+import os
 def models():
 	"""
 	Returns all available GPT-2 models.
 	"""
 
-	return []
+	return next(os.walk("models/"))[1]
 
 def generate(model):
 	"""
