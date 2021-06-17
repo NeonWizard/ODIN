@@ -1,4 +1,6 @@
 import os
+import tensorflow as tf
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 import gpt_2_simple as gpt2
 
 from . import defaults
