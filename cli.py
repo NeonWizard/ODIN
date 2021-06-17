@@ -1,7 +1,5 @@
 import click
 
-import odin
-
 class RichGroup(click.Group):
 	def format_help(self, ctx, formatter):
 		print(f"""
@@ -36,6 +34,7 @@ def list():
 	Print all of the available GPT-2 models by name.
 	"""
 
+	import odin
 	print("\n".join(odin.models()))
 
 @main.command()
@@ -45,6 +44,7 @@ def generate(model):
 	Generate text via the specified model name.
 	"""
 
+	import odin
 	print("\n".join(odin.generate(model)["data"]))
 
 
