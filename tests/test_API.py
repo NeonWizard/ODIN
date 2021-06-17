@@ -1,6 +1,7 @@
 import unittest
 
 from api.app import app
+from odin import defaults
 
 class TestAPI(unittest.TestCase):
 	# -- Setup --
@@ -80,17 +81,17 @@ class TestAPI(unittest.TestCase):
 		response = self.app.get(endpoint)
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.json["meta"]["parameters"], {
-            "batch_size": 1,
-            "include_prefix": True,
-            "length": 512,
-            "n_samples": 1,
-            "prefix": None,
-            "sample_delimiter": "",
-            "seed": None,
-            "temperature": 0.7,
-            "top_k": 0,
-            "top_p": 0.0,
-            "truncate": None
+            "batch_size": defaults.BATCH_SIZE,
+            "include_prefix": defaults.INCLUDE_PREFIX,
+            "length": defaults.LENGTH,
+            "n_samples": defaults.N_SAMPLES,
+            "prefix": defaults.PREFIX,
+            "sample_delimiter": defaults.SAMPLE_DELIMITER,
+            "seed": defaults.SEED,
+            "temperature": defaults.TEMPERATURE,
+            "top_k": defaults.TOP_K,
+            "top_p": defaults.TOP_P,
+            "truncate": defaults.TRUNCATE
 		})
 
 		# configured
@@ -112,7 +113,7 @@ class TestAPI(unittest.TestCase):
             "length": 4,
             "n_samples": 2,
             "prefix": "yeap",
-            "sample_delimiter": "====================\n",
+            "sample_delimiter": defaults.SAMPLE_DELIMITER,
             "seed": 3489575,
             "temperature": 1.0,
             "top_k": 1,

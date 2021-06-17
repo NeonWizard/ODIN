@@ -192,21 +192,21 @@ def generate(name):
 	# in the call to the second endpoint.
 
 	# - Parse arguments
-	length = request.form.get("length", 512, type=int)
-	truncate = request.form.get("truncate", None, type=str) # token to truncate at
-	prefix = request.form.get("prefix", None, type=str)
-	seed = request.form.get("seed", None, type=int)
-	temperature = request.form.get("temperature", 0.7, type=float)
-	top_k = request.form.get("top_k", 0, type=int)
-	top_p = request.form.get("top_p", 0.0, type=float)
+	length = request.form.get("length", odin.defaults.LENGTH, type=int)
+	truncate = request.form.get("truncate", odin.defaults.TRUNCATE, type=str)
+	prefix = request.form.get("prefix", odin.defaults.PREFIX, type=str)
+	seed = request.form.get("seed", odin.defaults.SEED, type=int)
+	temperature = request.form.get("temperature", odin.defaults.TEMPERATURE, type=float)
+	top_k = request.form.get("top_k", odin.defaults.TOP_K, type=int)
+	top_p = request.form.get("top_p", odin.defaults.TOP_P, type=float)
 
-	include_prefix = request.form.get("include_prefix", "true", type=str)
+	include_prefix = request.form.get("include_prefix", str(odin.defaults.INCLUDE_PREFIX), type=str)
 	include_prefix = include_prefix.lower() == "true"
 
-	sample_delimiter = request.form.get("sample_delimiter", "=" * 20 + "\n", type=str)
-	n_samples = request.form.get("n_samples", 1, type=int)
+	sample_delimiter = request.form.get("sample_delimiter", odin.defaults.SAMPLE_DELIMITER, type=str)
+	n_samples = request.form.get("n_samples", odin.defaults.N_SAMPLES, type=int)
 	if n_samples == 1: sample_delimiter = ""
-	batch_size = request.form.get("batch_size", 1, type=int) # Number of batches (only affects speed/memory. Must divide n_samples
+	batch_size = request.form.get("batch_size", odin.defaults.BATCH_SIZE, type=int)
 
 	# - Validate arguments
 	if length < 1 or length > 16384:
