@@ -5,3 +5,4 @@ flask-swagger==0.2.14
 flask-swagger-ui==3.36.0
 gpt-2-simple==0.7.2
 tensorflow==1.15.0
+itsdangerous==2.0.1

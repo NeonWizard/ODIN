@@ -10,11 +10,21 @@ import odin
 from .blueprints.example import blueprint as jinja_template_blueprint
 from .blueprints.basic import blueprint as basic_endpoints
 from .blueprints.auth import blueprint as auth_endpoints
+from .blueprints.auth import require_token
 
 app = flask.Flask(__name__)
+
 app.register_blueprint(jinja_template_blueprint)
 app.register_blueprint(basic_endpoints)
 app.register_blueprint(auth_endpoints)
+
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", None)
+assert(app.config["SECRET_KEY"] != None and app.config["SECRET_KEY"] != "")
+
+app.config["USERNAME"] = os.getenv("USERNAME", None)
+app.config["PASSWORD"] = os.getenv("PASSWORD", None)
+assert(app.config["USERNAME"] != None and app.config["USERNAME"] != "")
+assert(app.config["PASSWORD"] != None and app.config["PASSWORD"] != "")
 
 swaggerui_blueprint = get_swaggerui_blueprint(
 	"/api/docs",
@@ -30,6 +40,7 @@ def spec():
 	return jsonify(swag)
 
 @app.route("/api/models", methods=["GET"])
+@require_token
 def models():
 	"""
 	Returns all available GPT-2 models.
@@ -62,6 +73,7 @@ def models():
 	}
 
 @app.route("/api/models/<string:name>", methods=["GET"])
+@require_token
 def generate(name):
 	"""
 	Generates text via a specified GPT-2 model.
