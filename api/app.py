@@ -39,6 +39,10 @@ def spec():
 	swag["info"]["version"] = 1.0
 	return jsonify(swag)
 
+@app.errorhandler(404)
+def not_found(e):
+	return jsonify(error=str(e)), 404
+
 @app.route("/api/models", methods=["GET"])
 @require_token
 def models():
