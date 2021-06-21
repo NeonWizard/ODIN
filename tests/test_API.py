@@ -1,4 +1,7 @@
 import unittest
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 from api.app import app
 from odin import defaults
@@ -13,7 +16,11 @@ class TestAPI(unittest.TestCase):
 
 	# -- Tests --
 	def test_auth(self):
-		response = self.app.get("/api/auth")
+		data = {
+			"username": os.getenv("USERNAME"),
+			"password": os.getenv("PASSWORD")
+		}
+		response = self.app.get("/api/auth", data=data)
 		self.assertEqual(response.status_code, 200)
 
 	def test_generate(self):
@@ -22,68 +29,80 @@ class TestAPI(unittest.TestCase):
 		This tests text generation and parameters.
 		"""
 
+		# TODO: split each into different methods
+
 		endpoint = "/api/models/test"
+
+		data = {
+			"username": os.getenv("USERNAME"),
+			"password": os.getenv("PASSWORD")
+		}
+		token = self.app.get("/api/auth", data=data).get_data(as_text=True)
+
+		headers = {
+			"Authorization": f"Bearer {token}"
+		}
 
 		# - Fail cases
 		# length
 		response = self.app.get(endpoint, data={
 			"length": -1
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# seed
 		response = self.app.get(endpoint, data={
 			"seed": 2**33
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 		response = self.app.get(endpoint, data={
 			"seed": 48573,
 			"n_samples": 2
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# temperature
 		response = self.app.get(endpoint, data={
 			"temperature": -1
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 		response = self.app.get(endpoint, data={
 			"temperature": 2.3
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# top_k
 		response = self.app.get(endpoint, data={
 			"top_k": -1
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# top_p
 		response = self.app.get(endpoint, data={
 			"top_p": -1
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 		response = self.app.get(endpoint, data={
 			"top_p": 3.7
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# n_samples
 		response = self.app.get(endpoint, data={
 			"n_samples": -1
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# batch_size
 		response = self.app.get(endpoint, data={
 			"n_samples": 1,
 			"batch_size": 2
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 400)
 
 		# - Success cases
 		# default
-		response = self.app.get(endpoint)
+		response = self.app.get(endpoint, headers=headers)
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.json["meta"]["parameters"], {
             "batch_size": defaults.BATCH_SIZE,
@@ -108,7 +127,7 @@ class TestAPI(unittest.TestCase):
 			"truncate": "someword",
 			"prefix": "yeap",
 			"include_prefix": False
-		})
+		}, headers=headers)
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.json["meta"]["parameters"], {
             "batch_size": 2,
