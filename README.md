@@ -1,3 +1,4 @@
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/NeonWizard/ODIN/Unit%20Testing?logo=github)
 ```
     ███████    ██████████   █████ ██████   █████
   ███░░░░░███ ░░███░░░░███ ░░███ ░░██████ ░░███
