@@ -33,4 +33,4 @@ jobs:
 
     - name: Run the tests
       run: |
-        make test
+        python3 -W ignore::DeprecationWarning -m unittest
