@@ -9,6 +9,12 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  FLASK_APP: "api/app.py"
+  USERNAME: ${{ secrets.USERNAME }}
+  PASSWORD: ${{ secrets.PASSWORD }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
