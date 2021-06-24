@@ -20,6 +20,10 @@ ODIN is primarily a Flask RPC API. Token-based authentication is available to en
 
 ## Installation
 ```bash
+# Download the project
+sudo git clone https://github.com/NeonWizard/ODIN /opt/neuraltextserver
+cd /opt/neuraltextserver
+
 # Set up the python environment and packages
 make update
 
