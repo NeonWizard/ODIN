@@ -3,11 +3,11 @@ Description=Neural Text Server
 After=multi-user.target
 OnFailure=unit-status-telegram@%n.service
 StartLimitBurst=2
-StartLimitIntervalSec=30
+StartLimitIntervalSec=60
 
 [Service]
 WorkingDirectory=/opt/neuraltextserver
-ExecStart=make run
+ExecStart=/opt/neuraltextserver/venv/bin/gunicorn --bind unix:odin.sock -m 007 api.app:app
 Restart=on-failure
 RestartSec=5
 Type=simple

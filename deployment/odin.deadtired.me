@@ -1,0 +1,9 @@
+server {
+	listen 80;
+	server_name odin.deadtired.me;
+
+	location / {
+		include proxy_params;
+		proxy_pass http://unix:/opt/neuraltextserver/odin.sock;
+	}
+}
