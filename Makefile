@@ -6,11 +6,15 @@ update: venv
 venv:
 	test -d venv || virtualenv -p python3.7 venv
 
-install: update
-	sudo cp neuraltextserver.service /etc/systemd/system
+deploy-web:
+	sudo cp deployment/neuraltextserver.service /etc/systemd/system
 	sudo systemctl daemon-reload
 	sudo systemctl enable neuraltextserver.service
 	sudo systemctl restart neuraltextserver.service
+
+	sudo cp deployment/odin.deadtired.me /etc/nginx/sites-available/odin.deadtired.me
+	sudo ln -sf /etc/nginx/sites-available/odin.deadtired.me /etc/nginx/sites-enabled/odin.deadtired.me
+	sudo service nginx restart
 
 test:
 	. venv/bin/activate; \
@@ -27,4 +31,4 @@ cli:
 clean:
 	find -iname "*.pyc" -delete
 
-.PHONY: update venv install test run cli clean
+.PHONY: update venv deploy-web test run cli clean
