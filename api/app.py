@@ -12,6 +12,9 @@ from .blueprints.basic import blueprint as basic_endpoints
 from .blueprints.auth import blueprint as auth_endpoints
 from .blueprints.auth import require_token
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = flask.Flask(__name__)
 
 app.register_blueprint(jinja_template_blueprint)
