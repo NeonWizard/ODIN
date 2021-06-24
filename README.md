@@ -23,33 +23,17 @@ ODIN is primarily a Flask RPC API. Token-based authentication is available to en
 # Set up the python environment and packages
 make update
 
-# Install the deployment config files
-make deploy-web
-```
-
-<details><summary>Click to expand manual steps</summary>
-<p>
-
-```bash
-# Set up the python environment and packages
-make update
-
-# Install the systemd config file
-sudo cp deployment/neuraltextserver.service /etc/systemd/system/neuraltextserver.service
-sudo systemctl daemon-reload
-
-# Start the systemd service
-sudo systemctl start neuraltextserver.service
-sudo systemctl enable neuraltextserver.service
+# Install the systemd service config
+make setup-systemd
 
 # Verify the service status
 sudo systemctl status neuraltextserver.service
 
-# Install the nginx config
+# Install the NGINX config
 sudo cp deployment/odin.deadtired.me /etc/nginx/sites-available/odin.deadtired.me
 sudo ln -sf /etc/nginx/sites-available/odin.deadtired.me /etc/nginx/sites-enabled/odin.deadtired.me
+
+# Set up HTTPS via Certbot
+sudo certbot --nginx -d odin.deadtired.me
 sudo service nginx restart
 ```
-
-</p>
-</details>
