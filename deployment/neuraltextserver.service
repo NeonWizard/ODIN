@@ -7,7 +7,7 @@ StartLimitIntervalSec=60
 
 [Service]
 WorkingDirectory=/opt/neuraltextserver
-ExecStart=/opt/neuraltextserver/venv/bin/gunicorn --bind unix:odin.sock -m 007 api.app:app
+ExecStart=/opt/neuraltextserver/venv/bin/gunicorn --bind unix:odin.sock api.app:app
 Restart=on-failure
 RestartSec=5
 Type=simple
