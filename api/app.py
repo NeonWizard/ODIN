@@ -2,6 +2,7 @@ import os
 import time, datetime
 import flask
 from flask import request, jsonify
+from flask_cors import CORS
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
 
@@ -16,6 +17,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = flask.Flask(__name__)
+CORS(app)
 
 app.register_blueprint(jinja_template_blueprint)
 app.register_blueprint(basic_endpoints)
