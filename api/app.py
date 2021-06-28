@@ -206,19 +206,19 @@ def generate(name):
 	# in the call to the second endpoint.
 
 	# - Parse arguments
-	length = request.form.get("length", odin.defaults.LENGTH, type=int)
-	truncate = request.form.get("truncate", odin.defaults.TRUNCATE, type=str)
-	prefix = request.form.get("prefix", odin.defaults.PREFIX, type=str)
-	seed = request.form.get("seed", odin.defaults.SEED, type=int)
-	temperature = request.form.get("temperature", odin.defaults.TEMPERATURE, type=float)
-	top_k = request.form.get("top_k", odin.defaults.TOP_K, type=int)
-	top_p = request.form.get("top_p", odin.defaults.TOP_P, type=float)
+	length = request.json.get("length", odin.defaults.LENGTH, type=int)
+	truncate = request.json.get("truncate", odin.defaults.TRUNCATE, type=str)
+	prefix = request.json.get("prefix", odin.defaults.PREFIX, type=str)
+	seed = request.json.get("seed", odin.defaults.SEED, type=int)
+	temperature = request.json.get("temperature", odin.defaults.TEMPERATURE, type=float)
+	top_k = request.json.get("top_k", odin.defaults.TOP_K, type=int)
+	top_p = request.json.get("top_p", odin.defaults.TOP_P, type=float)
 
-	include_prefix = request.form.get("include_prefix", str(odin.defaults.INCLUDE_PREFIX), type=str)
+	include_prefix = request.json.get("include_prefix", str(odin.defaults.INCLUDE_PREFIX), type=str)
 	include_prefix = include_prefix.lower() == "true"
 
-	n_samples = request.form.get("n_samples", odin.defaults.N_SAMPLES, type=int)
-	batch_size = request.form.get("batch_size", odin.defaults.BATCH_SIZE, type=int)
+	n_samples = request.json.get("n_samples", odin.defaults.N_SAMPLES, type=int)
+	batch_size = request.json.get("batch_size", odin.defaults.BATCH_SIZE, type=int)
 
 	# - Validate arguments
 	if length < 1 or length > 16384:

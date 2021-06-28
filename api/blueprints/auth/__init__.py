@@ -51,8 +51,8 @@ def auth():
 				$ref: "#/definitions/Error"
 	"""
 
-	username = request.form.get("username", type=str)
-	password = request.form.get("password", type=str)
+	username = request.json.get("username", type=str)
+	password = request.json.get("password", type=str)
 	if username == None or password == None:
 		return { "error": "Username and password are both required." }, 400
 
