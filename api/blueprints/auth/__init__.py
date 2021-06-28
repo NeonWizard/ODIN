@@ -38,8 +38,11 @@ def auth():
 		200:
 			description: User was successfully authenticated
 			schema:
-				type: string
-				description: An auth token that is valid for 24 hours
+				type: object
+				properties:
+					token:
+						type: string
+						description: An auth token that is valid for 24 hours
 		400:
 			description: Request contained invalid data
 			schema:
@@ -60,7 +63,7 @@ def auth():
 		return { "error": "Username and password are invalid." }, 401
 
 	s = Serializer(app.config["SECRET_KEY"], expires_in=86400)
-	return s.dumps({ "username": username })
+	return { "token": s.dumps({ "username": username }) }
 
 def require_token(f):
 	@wraps(f)
