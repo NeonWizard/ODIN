@@ -71,7 +71,7 @@ def isAuthenticated():
 		return { "error": "Authorization header is required." }, 400
 
 	s = Serializer(app.config["SECRET_KEY"])
-	token = request.headers.get("Authorization").split()[1]
+	token = request.headers.get("Authorization").replace("Bearer: ", "")
 
 	try:
 		username = s.loads(token)["username"]
