@@ -201,24 +201,19 @@ def generate(name):
 						description: Information about the error
 	"""
 
-	# TODO: consider having generate build out a dynamically generated URL to confirm generation request by requesting to generated URL
-	# Two separate endpoints: request_generate and generate. The first would return a token from the server, which would have to be sent
-	# in the call to the second endpoint.
-
 	# - Parse arguments
-	length = request.json.get("length", odin.defaults.LENGTH, type=int)
-	truncate = request.json.get("truncate", odin.defaults.TRUNCATE, type=str)
-	prefix = request.json.get("prefix", odin.defaults.PREFIX, type=str)
-	seed = request.json.get("seed", odin.defaults.SEED, type=int)
-	temperature = request.json.get("temperature", odin.defaults.TEMPERATURE, type=float)
-	top_k = request.json.get("top_k", odin.defaults.TOP_K, type=int)
-	top_p = request.json.get("top_p", odin.defaults.TOP_P, type=float)
+	length = request.json.get("length", odin.defaults.LENGTH)
+	truncate = request.json.get("truncate", odin.defaults.TRUNCATE)
+	prefix = request.json.get("prefix", odin.defaults.PREFIX)
+	seed = request.json.get("seed", odin.defaults.SEED)
+	temperature = request.json.get("temperature", odin.defaults.TEMPERATURE)
+	top_k = request.json.get("top_k", odin.defaults.TOP_K)
+	top_p = request.json.get("top_p", odin.defaults.TOP_P)
 
-	include_prefix = request.json.get("include_prefix", str(odin.defaults.INCLUDE_PREFIX), type=str)
-	include_prefix = include_prefix.lower() == "true"
+	include_prefix = request.json.get("include_prefix", odin.defaults.INCLUDE_PREFIX)
 
-	n_samples = request.json.get("n_samples", odin.defaults.N_SAMPLES, type=int)
-	batch_size = request.json.get("batch_size", odin.defaults.BATCH_SIZE, type=int)
+	n_samples = request.json.get("n_samples", odin.defaults.N_SAMPLES)
+	batch_size = request.json.get("batch_size", odin.defaults.BATCH_SIZE)
 
 	# - Validate arguments
 	if length < 1 or length > 16384:
