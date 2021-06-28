@@ -38,7 +38,7 @@ class TestAPI(unittest.TestCase):
 			"username": os.getenv("USERNAME"),
 			"password": os.getenv("PASSWORD")
 		}
-		token = self.app.post("/api/auth", json=data).get_data(as_text=True)
+		token = self.app.post("/api/auth", json=data).json["token"]
 
 		headers = {
 			"Authorization": f"Bearer {token}"
