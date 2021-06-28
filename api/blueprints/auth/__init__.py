@@ -63,7 +63,7 @@ def auth():
 		return { "error": "Username and password are invalid." }, 401
 
 	s = Serializer(app.config["SECRET_KEY"], expires_in=86400)
-	return { "token": s.dumps({ "username": username }) }
+	return { "token": s.dumps({ "username": username }).decode("utf-8") }
 
 def require_token(f):
 	@wraps(f)
