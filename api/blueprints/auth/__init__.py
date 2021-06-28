@@ -67,11 +67,11 @@ def auth():
 
 @blueprint.route("/isAuthenticated", methods=["GET"])
 def isAuthenticated():
-	if not "Authorization" in request.headers:
-		return { "error": "Authorization header is required." }, 400
+	if not "X-API-KEY" in request.headers:
+		return { "error": "X-API-KEY header is required." }, 400
 
 	s = Serializer(app.config["SECRET_KEY"])
-	token = request.headers.get("Authorization").replace("Bearer: ", "")
+	token = request.headers.get("X-API-KEY")
 
 	try:
 		username = s.loads(token)["username"]

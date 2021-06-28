@@ -41,7 +41,7 @@ class TestAPI(unittest.TestCase):
 		token = self.app.post("/api/auth", json=data).json["token"]
 
 		headers = {
-			"Authorization": f"Bearer {token}"
+			"X-API-KEY": token
 		}
 
 		# - Fail cases
