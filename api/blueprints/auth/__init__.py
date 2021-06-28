@@ -65,24 +65,32 @@ def auth():
 	s = Serializer(app.config["SECRET_KEY"], expires_in=86400)
 	return { "token": s.dumps({ "username": username }).decode("utf-8") }
 
+@blueprint.route("/isAuthenticated", methods=["GET"])
+def isAuthenticated():
+	if not "Authorization" in request.headers:
+		return { "error": "Authorization header is required." }, 400
+
+	s = Serializer(app.config["SECRET_KEY"])
+	token = request.headers.get("Authorization").split()[1]
+
+	try:
+		username = s.loads(token)["username"]
+	except BadSignature:
+		return { "error": "Invalid auth token." }, 401
+	except SignatureExpired:
+		return { "error": "Auth token is expired." }, 401
+
+	if username != app.config["USERNAME"]:
+		return { "error": "Token is not authorized for this resource." }, 401
+
+	return {}, 200
+
 def require_token(f):
 	@wraps(f)
 	def decorated_function(*args, **kwargs):
-		if not "Authorization" in request.headers:
-			return { "error": "Authorization header is required." }, 400
-
-		s = Serializer(app.config["SECRET_KEY"])
-		token = request.headers.get("Authorization").split()[1]
-
-		try:
-			username = s.loads(token)["username"]
-		except BadSignature:
-			return { "error": "Invalid auth token." }, 401
-		except SignatureExpired:
-			return { "error": "Auth token is expired." }, 401
-
-		if username != app.config["USERNAME"]:
-			return { "error": "Token is not authorized for this resource." }, 401
+		ret = isAuthenticated()
+		if ret[1] != 200:
+			return ret
 
 		return f(*args, **kwargs)
 
