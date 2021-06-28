@@ -81,7 +81,7 @@ def models():
 		"models": models
 	}
 
-@app.route("/api/models/<string:name>", methods=["GET"])
+@app.route("/api/models/<string:name>", methods=["POST"])
 @require_token
 def generate(name):
 	"""

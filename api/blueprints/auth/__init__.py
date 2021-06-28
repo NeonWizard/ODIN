@@ -6,7 +6,7 @@ from functools import wraps
 app = flask.current_app
 blueprint = Blueprint("auth", __name__, url_prefix="/api")
 
-@blueprint.route("/auth", methods=["GET"])
+@blueprint.route("/auth", methods=["POST"])
 def auth():
 	"""
 	Authenticate the user via username/password and return a token.
