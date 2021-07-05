@@ -59,6 +59,6 @@ def generate(
 
 	print(response)
 
-	sess.close()
+	gpt2.reset_session(sess)
 
 	return { "data": response }
