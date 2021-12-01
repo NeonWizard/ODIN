@@ -1,7 +1,7 @@
 import os
 import time, datetime
 import flask
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 from flask_cors import CORS
 from flask_swagger import swagger
 from flask_swagger_ui import get_swaggerui_blueprint
@@ -47,6 +47,10 @@ def spec():
 @app.errorhandler(404)
 def not_found(e):
 	return jsonify(error=str(e)), 404
+
+@app.route("/", methods=["GET"])
+def homepage():
+	return render_template("home.html")
 
 @app.route("/api/models", methods=["GET"])
 @require_token

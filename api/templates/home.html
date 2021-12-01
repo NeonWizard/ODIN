@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ODIN</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      font-family: monospace;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: black;
+      color: white;
+      text-align: center;
+    }
+    pre {
+      font-size: 15px;
+    }
+    #subtext {
+      color: #888;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+    #main, footer {
+      z-index: 5;
+    }
+    footer {
+      position: absolute;
+      bottom: 20px;
+      color: #444;
+    }
+    footer a {
+      text-decoration: none;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <pre id="header">
+    ███████    ██████████   █████ ██████   █████
+  ███░░░░░███ ░░███░░░░███ ░░███ ░░██████ ░░███
+ ███     ░░███ ░███   ░░███ ░███  ░███░███ ░███
+░███      ░███ ░███    ░███ ░███  ░███░░███░███
+░███      ░███ ░███    ░███ ░███  ░███ ░░██████
+░░███     ███  ░███    ███  ░███  ░███  ░░█████
+ ░░░███████░   ██████████   █████ █████  ░░█████
+   ░░░░░░░    ░░░░░░░░░░   ░░░░░ ░░░░░    ░░░░░
+    </pre>
+
+    <pre id="subtext">
+  A centralized API for my various GPT-2 neural networks.
+    </pre>
+  </div>
+
+  <canvas>
+  </canvas>
+
+  <footer>
+    Created by <a href="https://github.com/NeonWizard" target="_blank">Spooky</a>.
+  </footer>
+
+  <script>
+    let canvas = document.getElementsByTagName("canvas")[0];
+
+    for (let i = 0; i < 16; i++) {
+      let px = Math.round(Math.random() * window.innerWidth);
+      let py = Math.round(Math.random() * window.innerHeight);
+
+      // canvas.drawCircle(px, py, 3);
+    }
+  </script>
+</body>
+</html>
