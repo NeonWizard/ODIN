@@ -106,7 +106,7 @@ def generate(name):
 				type: integer
 				minimum: 1
 				maximum: 16384
-				default: 512
+				default: 32
 
 		-	name: truncate
 			in: body
