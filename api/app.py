@@ -242,8 +242,8 @@ def generate(name):
 	# - Generate response
 	name = name.lower()
 	if name == "test":
+		result = { "data": ["there are 40 cherries on the cherry tree."] }
 		gen_time = datetime.timedelta(milliseconds=69)
-		result = { "data": "there are 40 cherries on the cherry tree." }
 	else:
 		start_time = datetime.datetime.now()
 		result = odin.generate(
