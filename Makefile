@@ -3,7 +3,7 @@ update: venv
 	python3 -m pip install -r requirements.txt
 
 venv:
-	test -d venv || virtualenv -p python3.7 venv
+	test -d venv || virtualenv -p python3 venv
 
 setup-systemd:
 	sudo cp deployment/neuraltextserver.service /etc/systemd/system
